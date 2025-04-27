@@ -7,24 +7,67 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <audio id="bg-music" autoplay loop>
-    <source src="assets\birthday-music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
+  <div></div>
   <div class="card">
     <h1>🎂 Chúc mừng sinh nhật bố mẹ! 🎉</h1>
-    <button onclick="openMessage()">Ấn vào đây</button>
-    <div id="hidden-message" class="hidden">
-      <p>🎁 Nhân dịp sinh nhật bố mẹ con chúc bố mẹ sức khỏe dồi dào, tiền vào như nước 🎁</p>
+    <button onclick="openMessage1()">Chúc mừng sinh nhật mẹ</button>
+    <button onclick="openMessage2()">Chúc mừng sinh nhật bố</button>
+    <div id="hidden-message-1" class="hidden">
+      <p>🎁 Nhân dịp sinh nhật mẹ🎁</p>
+    </div>    
+    <div id="hidden-message-2" class="hidden">
+      <p>🎁 Nhân dịp sinh nhật bố🎁</p>
     </div>
   </div>
+  <hr>
+  <div class="card">
+    <h2>🎲 Try Your Luck!</h2>
+    <p>Click the button to see if you hit the jackpot (10% chance per click!)</p>
+    <button onclick="playGame()">Click Me!</button>
+    <p id="game-result"></p>
+    <p>Current Attempts: <span id="attempts">0</span></p>
+    <p>Best Score (Lowest Clicks): <span id="best-score">-</span></p>
+  </div>
+
 
   <script>
-    function openMessage() {
-      document.getElementById('hidden-message').classList.toggle('hidden');
+    function openMessage1() {
+      document.getElementById('hidden-message-1').classList.toggle('hidden');
+    }    
+    function openMessage2() {
+      document.getElementById('hidden-message-2').classList.toggle('hidden');
     }
   </script>
+
+  <script>
+  let attempts = 0;
+  let bestScore = localStorage.getItem('bestScore') || null;
+
+  if (bestScore !== null) {
+    document.getElementById('best-score').textContent = bestScore;
+  }
+
+  function playGame() {
+    attempts++;
+    document.getElementById('attempts').textContent = attempts;
+
+    // Generate a random number 0–1, jackpot if < 0.1 (10%)
+    if (Math.random() < 0.1) {
+      document.getElementById('game-result').textContent = "🎉 JACKPOT!!! 🎉";
+
+      if (bestScore === null || attempts < bestScore) {
+        bestScore = attempts;
+        localStorage.setItem('bestScore', bestScore);
+        document.getElementById('best-score').textContent = bestScore;
+      }
+
+      // Reset attempts for a new round
+      attempts = 0;
+    } else {
+      document.getElementById('game-result').textContent = "No luck yet, try again!";
+    }
+  }
+  </script>
+
 </body>
 </html>
