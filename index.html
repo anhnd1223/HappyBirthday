@@ -13,20 +13,22 @@
     <button onclick="openMessage1()">Chúc mừng sinh nhật mẹ</button>
     <button onclick="openMessage2()">Chúc mừng sinh nhật bố</button>
     <div id="hidden-message-1" class="hidden">
-      <p>🎁 Nhân dịp sinh nhật mẹ🎁</p>
+      <p>🎁 Nhân dịp sinh nhật mẹ, con chúc mẹ có sức khỏe dồi dào, tiền vào như nước và mua được nhiều hàng ship xịn 🎁</p>
     </div>    
     <div id="hidden-message-2" class="hidden">
-      <p>🎁 Nhân dịp sinh nhật bố🎁</p>
+      <p>🎁 Nhân dịp sinh nhật bố, con chúc bố có sức khỏe dồi dào, tiền vào như nước và ăn uống đủ bữa🎁</p>
     </div>
   </div>
   <hr>
   <div class="card">
-    <h2>🎲 Try Your Luck!</h2>
-    <p>Click the button to see if you hit the jackpot (10% chance per click!)</p>
-    <button onclick="playGame()">Click Me!</button>
+    <h2>🎲 Trò chơi giết thời gian</h2>
+    <p>Mỗi lần bấm nút có tỉ lệ 22% trúng giải</p>
+    <p>Điểm cao dựa trên số lần bấm cho đến khi trúng giải</p>
+    <button onclick="playGame()">Ấn vào đây</button>
     <p id="game-result"></p>
-    <p>Current Attempts: <span id="attempts">0</span></p>
-    <p>Best Score (Lowest Clicks): <span id="best-score">-</span></p>
+    <p>Số lần bấm hiện tại: <span id="attempts">0</span></p>
+    <p>Điểm cao (số lần bấm ít nhất): <span id="best-score">-</span></p>
+    <p>Điểm thấp (số lần bấm nhiều nhất): <span id="worst-score">-</span></p>
   </div>
 
 
@@ -38,36 +40,50 @@
       document.getElementById('hidden-message-2').classList.toggle('hidden');
     }
   </script>
-
+  
   <script>
   let attempts = 0;
   let bestScore = localStorage.getItem('bestScore') || null;
+  let worstScore = localStorage.getItem('worstScore') || null;
 
   if (bestScore !== null) {
     document.getElementById('best-score').textContent = bestScore;
+  }
+
+  if (worstScore !== null) {
+    document.getElementById('worst-score').textContent = worstScore;
   }
 
   function playGame() {
     attempts++;
     document.getElementById('attempts').textContent = attempts;
 
-    // Generate a random number 0–1, jackpot if < 0.1 (10%)
-    if (Math.random() < 0.1) {
-      document.getElementById('game-result').textContent = "🎉 JACKPOT!!! 🎉";
+    if (Math.random() < 0.22) {
+      const resultText = `🎉 TRÚNG sau ${attempts} lần bấm! 🎉`;
+      document.getElementById('game-result').textContent = resultText;
 
+      // Update best score
       if (bestScore === null || attempts < bestScore) {
         bestScore = attempts;
         localStorage.setItem('bestScore', bestScore);
         document.getElementById('best-score').textContent = bestScore;
       }
 
-      // Reset attempts for a new round
-      attempts = 0;
+      // Update worst score
+      if (worstScore === null || attempts > worstScore) {
+        worstScore = attempts;
+        localStorage.setItem('worstScore', worstScore);
+        document.getElementById('worst-score').textContent = worstScore;
+      }
+
+      attempts = 0; // Reset after jackpot
     } else {
-      document.getElementById('game-result').textContent = "No luck yet, try again!";
+      document.getElementById('game-result').textContent = ` `;
     }
   }
-  </script>
+</script>
+
+
 
 </body>
 </html>
