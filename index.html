@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy Birthday!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card">
+    <h1>🎂 Happy Birthday, Mom and Dad! 🎉</h1>
+    <p>Wishing you a day filled with love, laughter, and happiness. 💖</p>
+    <p>Love you always,</p>
+    <p><strong>[Your Name]</strong></p>
+    <button onclick="openMessage()">Click for a Surprise!</button>
+    <div id="hidden-message" class="hidden">
+      <p>🎁 You are the best parents in the world! 🎁</p>
+      <p>Thank you for everything you've done for me!</p>
+    </div>
+  </div>
+
+  <script>
+    function openMessage() {
+      document.getElementById('hidden-message').classList.toggle('hidden');
+    }
+  </script>
+</body>
+</html>
