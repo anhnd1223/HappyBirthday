@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div></div>
+  <audio autoplay>
+    <source src = "assets/birthday-music.mp3">
+  </audio>
   <div class="card">
     <h1>🎂 Chúc mừng sinh nhật bố mẹ! 🎉</h1>
     <button onclick="openMessage1()">Chúc mừng sinh nhật mẹ</button>
@@ -19,7 +21,6 @@
       <p>🎁 Nhân dịp sinh nhật bố, con chúc bố có sức khỏe dồi dào, tiền vào như nước và ăn uống đủ bữa🎁</p>
     </div>
   </div>
-  <hr>
   <hr>
   <div class="card">
     <h2>🎲 Trò chơi giết thời gian</h2>
@@ -41,7 +42,12 @@
       document.getElementById('hidden-message-2').classList.toggle('hidden');
     }
   </script>
-  
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script>
+    window.onload = () => {
+      confetti();
+    };
+  </script>
   <script>
   let attempts = 0;
   let bestScore = localStorage.getItem('bestScore') || null;
