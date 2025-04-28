@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <audio autoplay>
+  <audio controls>
     <source src = "assets/birthday-music.mp3">
   </audio>
   <div class="card">
@@ -66,6 +66,7 @@
     document.getElementById('attempts').textContent = attempts;
 
     if (Math.random() < 0.22) {
+      confetti()
       const resultText = `🎉 TRÚNG sau ${attempts} lần bấm! 🎉`;
       document.getElementById('game-result').textContent = resultText;
 
