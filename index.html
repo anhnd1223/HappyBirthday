@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Quiz</title>
+  <title>Happy Birthday!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -83,14 +83,18 @@
 <body>
 
 <div class="container">
+  <audio controls>
+    <source src = "assets/birthday-music.mp3">
+  </audio>
+<br> <br>
   <!-- START SCREEN -->
   <div id="startScreen">
-    <h1>Chúc mừng sinh nhật bố mẹ</h1>
+    <h1>🎂 Chúc mừng sinh nhật bố mẹ! 🎉</h1>
     <p>
-      Nhân dịp sinh nhật bố mẹ con chúc bố mẹ có nhiều sức khỏe và tiền bạc<br><br>
-      Sau đây là một vài câu hỏi đố vui nhân dịp sinh nhật bố mẹ
+      Nhân dịp sinh nhật bố mẹ con chúc bố mẹ có nhiều sức khỏe và niềm vui<br><br>
+      Sau đây là một vài câu hỏi đố vui để thử thách tri thức tuổi mới
     </p>
-    <button class="btn" onclick="startQuiz()">Start</button>
+    <button class="btn" onclick="startQuiz()">Bắt đầu</button>
   </div>
 
   <!-- QUIZ SCREEN -->
@@ -110,12 +114,12 @@
 <script>
 const questions = [
   {
-    text: "Bánh mì Việt Nam thường có đặc điểm nào sau đây?",
+    text: "Loại vỏ nào thường dùng để cuốn nem truyền thống miền Bắc?",
     answers: [
-      { text: "Chỉ có phô mai", correct: false },
-      { text: "Kẹp nhiều loại nhân như thịt, rau, pate", correct: true },
-      { text: "Là món tráng miệng ngọt", correct: false },
-      { text: "Không có vỏ giòn", correct: false },
+      { text: "Bánh tráng", correct: false },
+      { text: "Bánh đa nem", correct: true },
+      { text: "Vỏ sủi cảo", correct: false },
+      { text: "Lá chuối", correct: false },
     ]
   },
   {
@@ -142,7 +146,7 @@ const questions = [
       { text: "Chỉ dùng để tạo màu cho món ăn", correct: false },
       { text: "Làm tăng hương vị, dùng làm nước chấm và gia vị nấu ăn", correct: true },
       { text: "Chỉ dùng để ướp đồ ngọt", correct: false },
-      { text: "Không có vai trò quan trọng", correct: false }
+      { text: "Không có vai trò quan trọng", correct: true }
     ]
   },
   {
@@ -173,7 +177,7 @@ const questions = [
     ]
   },
   {
-    text: "Nếu có cả biển báo cố định và biển báo tạm thời, bạn tuân theo biển nào?",
+    text: "Nếu có cả biển báo cố định và biển báo tạm thời, cần tuân theo biển nào?",
     answers: [
       { text: "Biển tạm thời", correct: true },
       { text: "Biển cố định", correct: false },
@@ -267,17 +271,17 @@ function selectAnswer(button, correct) {
 function showResult() {
   progressBar.style.width = "100%";
 
-  questionEl.textContent = "Quiz Finished!";
+  questionEl.textContent = "Kết thúc";
   answersEl.innerHTML = `
-    <h3>Your Score: ${score} / ${questions.length}</h3>
-    <button class="btn" onclick="restart()">Restart</button>
+    <h3>Tổng điểm: ${score} / ${questions.length}</h3>
+    <button class="btn" onclick="restart()">Bắt đầu lại</button>
   `;
 }
 
 function restart() {
   current = 0;
   score = 0;
-  scoreEl.textContent = "Score: 0";
+  scoreEl.textContent = "Điểm: 0";
   showQuestion();
 }
 
